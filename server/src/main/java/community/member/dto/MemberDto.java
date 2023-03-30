@@ -79,5 +79,10 @@ public class MemberDto {
         private String name;
         private String treeCount;
     }
+    @AllArgsConstructor
+    @Getter
+    public static class userProfile{ //게시글 다중조회 시 유저 프로필
+        private String profileUrl;
+    }
 }
 

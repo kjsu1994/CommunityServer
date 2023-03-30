@@ -79,6 +79,7 @@ public class BoardDto {
         private String contents;
         private String boardCreator; //게시글 작성자
         private String creatorLevel; //작성자 레벨정보
+        private MemberDto.userProfile member; //board 엔티티 매핑이름과 동일하게 맞춰야함
         @JsonProperty("like_count")
         private int likeCount;
         @JsonProperty("view_count")
