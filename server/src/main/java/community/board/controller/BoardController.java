@@ -11,7 +11,6 @@ import community.type.SearchType;
 import community.board.mapper.BoardMapper;
 import community.board.service.BoardService;
 import community.globaldto.SingleResponseDto;
-import community.like.dto.BoardLikeDto;
 import community.like.service.BoardLikeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

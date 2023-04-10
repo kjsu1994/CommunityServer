@@ -7,7 +7,6 @@ import community.comment.mapper.CommentMapper;
 import community.comment.service.CommentService;
 import community.globaldto.MultiResponseDto;
 import community.globaldto.SingleResponseDto;
-import community.like.dto.CommentLikeDto;
 import community.like.service.CommentLikeService;
 import community.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
