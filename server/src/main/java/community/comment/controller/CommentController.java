@@ -89,10 +89,9 @@ public class CommentController {
     }
 
     @PostMapping("/{comment-id}/Like")  // 좋아요
-    public ResponseEntity<?> upLikeComment(@PathVariable("comment-id") long commentId,
-                                           @Valid @RequestBody CommentLikeDto requestBody) {
+    public ResponseEntity<?> upLikeComment(@PathVariable("comment-id") long commentId) {
 
-        Comment likeComment = commentLikeService.commentLikeUp(requestBody.getMemberId(), commentId);
+        Comment likeComment = commentLikeService.commentLikeUp(commentId);
         CommentDto.Response response = mapper.commentToCommentResponse(likeComment);
 
         return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);

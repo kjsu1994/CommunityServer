@@ -205,10 +205,9 @@ public class BoardController {
     }
 
     @PostMapping("/{board-id}/Like")
-    public ResponseEntity<?> upLikeBoard(@Positive @PathVariable("board-id") long boardId,
-                                         @Valid @RequestBody BoardLikeDto requestBody) {
+    public ResponseEntity<?> upLikeBoard(@Positive @PathVariable("board-id") long boardId) {
 
-        Board likeBoard = boardLikeService.boardLikeUP(requestBody.getMemberId(), boardId);
+        Board likeBoard = boardLikeService.boardLikeUP(boardId);
         BoardDto.RankResponse response = boardMapper.boardToBoardRankResponse(likeBoard);
 
         return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);
