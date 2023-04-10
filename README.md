@@ -7,9 +7,6 @@
 |[개인기술발표_김진수.pdf](https://github.com/kjsu1994/CommunityServer/files/11106579/_.pdf)|
 
 
-
-
-
 ## 💬 커밋 컨벤션
 
 | 타입 | Emoji | Code | 설명 |
