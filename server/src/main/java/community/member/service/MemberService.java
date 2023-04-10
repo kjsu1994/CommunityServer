@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -116,5 +117,11 @@ public class MemberService {
             memberRepository.save(member);
         }
         return member;
+    }
+
+    /*토큰값으로 유저정보 찾기*/
+    public Member loginMemberFindByToken(){
+        String loginEmail = SecurityContextHolder.getContext().getAuthentication().getName(); // 토큰에서 유저 email 확인
+        return findVerifiedEmail(loginEmail);
     }
 }

@@ -188,10 +188,9 @@ public class BoardController {
     }
 
     /*회원 게시물 목록 조회*/
-    @GetMapping("/myBoards/{member-id}")
-    public ResponseEntity<?> memberBoards(@PathVariable("member-id") @Positive long memberId,
-            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable){
-        Page<Board> boardPage = boardService.findMemberBoards(memberId, pageable);
+    @GetMapping("/myBoards")
+    public ResponseEntity<?> memberBoards(@PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable){
+        Page<Board> boardPage = boardService.findMemberBoards(pageable);
         List<Board> boards = boardPage.getContent();
 
         List<BoardDto.TotalPageListResponse> response = boardMapper.boardToBoardListResponse(boards);
@@ -215,9 +214,5 @@ public class BoardController {
         return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);
     }
 
-    /*토큰값으로 유저정보 찾기*/
-    private Member loginMemberFindByToken(){
-        String loginEmail = SecurityContextHolder.getContext().getAuthentication().getName(); // 토큰에서 유저 email 확인
-        return memberService.findVerifiedEmail(loginEmail);
-    }
+
 }
