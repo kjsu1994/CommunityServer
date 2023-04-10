@@ -71,8 +71,8 @@ public class MemberService {
         return findMember;
     }
 
-    public void deleteMember(long memberId){
-        Member findMember=findVerifiedMember(memberId);
+    public void deleteMember(){
+        Member findMember=loginMemberFindByToken();
 
         memberRepository.delete(findMember);
     }
@@ -108,8 +108,8 @@ public class MemberService {
 
     /* 나무기부
      1번 누를때마다 300포인트씩 차감 */
-    public Member donateTree(long memberId){
-        Member member = findMember(memberId);
+    public Member donateTree(){
+        Member member = loginMemberFindByToken();
 
         if(member.getPoint() >= 300) { // 300포인트 이상일 경우만 실행
             member.setPoint(member.getPoint() - 300);

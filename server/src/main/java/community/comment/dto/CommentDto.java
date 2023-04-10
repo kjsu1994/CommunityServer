@@ -15,7 +15,6 @@ public class CommentDto {
     @AllArgsConstructor
     public static class Post {
         private Long commentId;
-        private Long memberId;
         private Long boardId;
         @NotBlank(message = "내용을 입력해주세요.")
         private String contents;

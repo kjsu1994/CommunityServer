@@ -44,7 +44,7 @@ public class BoardController {
     public ResponseEntity<?> createFreeBoard(@ModelAttribute MultipartFile[] files,
                                              @Valid @ModelAttribute BoardDto.Post boardPostDto) throws Exception {
         Board board = boardMapper.boardPostToBoard(boardPostDto);
-        board.setMember(memberService.findVerifiedMember(boardPostDto.getMemberId()));
+        board.setMember(memberService.loginMemberFindByToken());
         Board boardCreate = boardService.createBoard(board, Board.KindOfBoard.FREE_BOARD); //게시판 종류를 입력
 
         List<UploadFile> uploadFiles = s3Service.uploadFiles(files, boardCreate); // aws s3업로드
@@ -58,7 +58,7 @@ public class BoardController {
     public ResponseEntity<?> createEcoBoard(@ModelAttribute MultipartFile[] files,
                                             @Valid @ModelAttribute BoardDto.Post boardPostDto) throws Exception {
         Board board = boardMapper.boardPostToBoard(boardPostDto);
-        board.setMember(memberService.findVerifiedMember(boardPostDto.getMemberId()));
+        board.setMember(memberService.loginMemberFindByToken());
         Board boardCreate = boardService.createBoard(board, Board.KindOfBoard.ECO_REVIEW); //게시판 종류를 입력
 
         List<UploadFile> uploadFiles = s3Service.uploadFiles(files, boardCreate); // aws s3업로드
@@ -72,7 +72,7 @@ public class BoardController {
     public ResponseEntity<?> createGreenBoard(@ModelAttribute MultipartFile[] files,
                                               @Valid @ModelAttribute BoardDto.Post boardPostDto) throws Exception {
         Board board = boardMapper.boardPostToBoard(boardPostDto);
-        board.setMember(memberService.findVerifiedMember(boardPostDto.getMemberId()));
+        board.setMember(memberService.loginMemberFindByToken());
         Board boardCreate = boardService.createBoard(board, Board.KindOfBoard.GREEN_ACTIVE); //게시판 종류를 입력
 
         List<UploadFile> uploadFiles = s3Service.uploadFiles(files, boardCreate); // aws s3업로드

@@ -49,10 +49,9 @@ public class MemberController {
 
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.memberToMemberResponse(createdMember, levelResponse)), HttpStatus.CREATED);
     }
-    @PostMapping("/uploadProfile/{member-id}")
-    public ResponseEntity postProfile(@PathVariable("member-id") @Positive long memberId,
-                                      @ModelAttribute MultipartFile[] file) throws Exception {
-        Member uploadProfile=s3Service.userProfile(file, memberId);
+    @PostMapping("/uploadProfile")
+    public ResponseEntity postProfile(@ModelAttribute MultipartFile[] file) throws Exception {
+        Member uploadProfile=s3Service.userProfile(file);
 
         Level level = levelService.memberlevel(uploadProfile); //만들어진 회원에 대한 레벨테이블
         LevelDto levelResponse = mapper.levelToLevelResponse(level); // 해당 레벨 리스폰스
@@ -60,9 +59,9 @@ public class MemberController {
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.memberToMemberResponse(uploadProfile, levelResponse)), HttpStatus.OK);
     }
 
-    @PostMapping("/donation/{member-id}") // 나무심기 버튼용
-    public ResponseEntity postDonation(@PathVariable("member-id") @Positive long memberId){
-        Member member = memberService.donateTree(memberId);
+    @PostMapping("/donation") // 나무심기 버튼용
+    public ResponseEntity postDonation(){
+        Member member = memberService.donateTree();
 
         Level level = levelService.memberlevel(member);
         LevelDto levelResponse = mapper.levelToLevelResponse(level);
@@ -88,10 +87,9 @@ public class MemberController {
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
-    @GetMapping("/{member-id}")
-    public ResponseEntity getMember(
-            @PathVariable("member-id") @Positive long memberId){
-        Member member=memberService.findMember(memberId);
+    @GetMapping
+    public ResponseEntity getMember(){
+        Member member=memberService.loginMemberFindByToken();
 
         Level level = levelService.memberlevel(member);
         LevelDto levelResponse = mapper.levelToLevelResponse(level);
@@ -101,9 +99,9 @@ public class MemberController {
         );
     }
 
-    @DeleteMapping("/{member-id}")
-    public ResponseEntity deleteMember(@PathVariable("member-id") @Positive long memberId){
-        memberService.deleteMember(memberId);
+    @DeleteMapping
+    public ResponseEntity deleteMember(){
+        memberService.deleteMember();
         return new ResponseEntity<>("회원탈퇴 완료.",HttpStatus.NO_CONTENT);
     }
 

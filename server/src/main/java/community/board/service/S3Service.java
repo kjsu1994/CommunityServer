@@ -70,9 +70,9 @@ public class S3Service {
     }
 
     /*유저 프로필*/
-    public Member userProfile(MultipartFile[] multipartFileList, long memberId) throws Exception {
+    public Member userProfile(MultipartFile[] multipartFileList) throws Exception {
         List<String> imagePathList = new ArrayList<>();
-        Member member = memberService.findMember(memberId); // 프로필이 적용될 회원
+        Member member = memberService.loginMemberFindByToken(); // 프로필이 적용될 회원
 
         for (MultipartFile multipartFile : multipartFileList) {
             String fileName = multipartFile.getOriginalFilename(); // 파일 이름
