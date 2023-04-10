@@ -21,9 +21,9 @@ public class CommentLikeService {
     private final MemberRepository memberRepository;
 
 
-    public Comment commentLikeUp(long memberId, long commentId) {
+    public Comment commentLikeUp(long commentId) {
 
-        Member member = memberService.findVerifiedMember(memberId); //좋아요 누르는 회원
+        Member member = memberService.loginMemberFindByToken(); //좋아요 누르는 회원
         Comment comment = commentService.findByComment(commentId); // 댓글
         Member commentMember = memberService.findMember(comment.getMember().getMemberId()); // 댓글 작성자
 

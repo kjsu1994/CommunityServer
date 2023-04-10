@@ -7,7 +7,6 @@ import community.comment.mapper.CommentMapper;
 import community.comment.service.CommentService;
 import community.globaldto.MultiResponseDto;
 import community.globaldto.SingleResponseDto;
-import community.like.dto.CommentLikeDto;
 import community.like.service.CommentLikeService;
 import community.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -89,10 +88,9 @@ public class CommentController {
     }
 
     @PostMapping("/{comment-id}/Like")  // 좋아요
-    public ResponseEntity<?> upLikeComment(@PathVariable("comment-id") long commentId,
-                                           @Valid @RequestBody CommentLikeDto requestBody) {
+    public ResponseEntity<?> upLikeComment(@PathVariable("comment-id") long commentId) {
 
-        Comment likeComment = commentLikeService.commentLikeUp(requestBody.getMemberId(), commentId);
+        Comment likeComment = commentLikeService.commentLikeUp(commentId);
         CommentDto.Response response = mapper.commentToCommentResponse(likeComment);
 
         return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);

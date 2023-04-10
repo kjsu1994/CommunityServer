@@ -20,9 +20,9 @@ public class BoardLikeService {
     private final MemberService memberService;
     private final MemberRepository memberRepository;
 
-    public Board boardLikeUP(long memberId, long boardId) {
+    public Board boardLikeUP(long boardId) {
 
-        Member member = memberService.findMember(memberId); // 좋아요 누르는 회원
+        Member member = memberService.loginMemberFindByToken(); // 좋아요 누르는 회원
         Board board = boardService.findBoard(boardId); // 좋아요가 눌리는 게시판
 
         Member boardMember = memberService.findMember(board.getMember().getMemberId()); // 게시판 작성자
