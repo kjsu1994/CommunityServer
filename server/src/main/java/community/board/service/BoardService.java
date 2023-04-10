@@ -76,8 +76,8 @@ public class BoardService {
 
     /*회원이 작성한 게시글 목록*/
     @Transactional(readOnly = true)
-    public Page<Board> findMemberBoards(long memberId, Pageable pageable){
-        Member member = memberService.findMember(memberId);
+    public Page<Board> findMemberBoards(Pageable pageable){
+        Member member = memberService.loginMemberFindByToken(); //토큰값으로 멤버찾기
         return boardRepository.findAllByMember(member, pageable);
     }
 
