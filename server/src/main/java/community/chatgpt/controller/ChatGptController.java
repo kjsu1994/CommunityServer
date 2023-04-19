@@ -21,11 +21,6 @@ import javax.validation.Valid;
 @Validated
 public class ChatGptController {
     private final ChatGptService chatGptService;
-
-    /*
-     * # ChatGPT 질문
-     *
-     */
     @PostMapping("/question")
     public ResponseEntity<?> sendQuestion(@Valid @RequestBody ChatGptDto.Post requestBody) {
         ChatGptDto.Response response = chatGptService.askQuestion(requestBody.getQuestion());
