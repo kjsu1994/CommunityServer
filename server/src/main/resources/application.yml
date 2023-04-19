@@ -68,6 +68,9 @@ naver:  #naver API 설정
     id: ENC(rbiCFlHAp11UusOi/ypq9EDX4NTmpRvEJewabaeqvZM=)
     secret: ENC(CbkdopKojXkFiY2OuQOLpMbvCTJkKN9/)
 
+chat-gpt:
+  secret-key: ENC(FqdQBJ4UKqTEvb4h33d1TDodRgKp5vniFbpAiN/+XrQWiDo+m5NQM4HaW4FjvJ70fgTJ8+QU6hf9Dyyhgvk2Qw==)
+
 jasypt: #패스워드 암호화/복호화 키
   encryptor:
     password: ${my_password} # 배포자동화  환경변수 사용
