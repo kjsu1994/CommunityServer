@@ -38,7 +38,6 @@ public class Member{
     private String phone;
     @Column
     String password;
-//    private String likeStatus; // 좋아요 눌렀는지 여부
     String profileUrl;
 
     @Column(nullable = false)

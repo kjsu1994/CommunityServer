@@ -177,7 +177,7 @@ public class BoardController {
         boardService.updateViewCount(boardId); // 조회수 증가
         Board board = boardService.findBoard(boardId);
 
-//        boardLikeService.BoardLikeStatus(memberId, board); //게시글에대한 좋아요상태 업데이트
+//        boardLikeService.BoardLikeStatus(board); //게시글에대한 좋아요상태 업데이트
 
         List<UploadFile> uploadFiles = s3Service.uploadFiles(null, board); // aws s3업로드
         List<UploadDto> uploadResponse = boardMapper.uploadFilesToUploadDtoList(uploadFiles); //업로드 dto생성

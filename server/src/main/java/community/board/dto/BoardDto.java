@@ -3,6 +3,7 @@ package community.board.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import community.board.entity.UploadFile;
 import community.comment.dto.CommentDto;
+import community.like.dto.BoardLikeDto;
 import community.member.dto.LevelDto;
 import community.member.dto.MemberDto;
 import lombok.*;
@@ -102,6 +103,7 @@ public class BoardDto {
         private MemberDto.Response member;
         private int creatorLevel; //작성자 레벨
         private List<UploadDto> uploadDto;
+        //private BoardLikeDto.response boardLikes; //좋아요 누름 상태
 
         private List<CommentDto.InfoResponse> comments;
         @JsonProperty("created_at")
